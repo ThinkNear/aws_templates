@@ -1,0 +1,10 @@
+/var/log/httpd/*log {
+    size 50M
+    missingok
+    rotate 1
+    create
+    sharedscripts
+    postrotate
+        /sbin/service httpd reload > /dev/null 2>/dev/null || true
+    endscript
+}

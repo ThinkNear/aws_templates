@@ -1,0 +1,10 @@
+# usage: logrotate -f ./logrotate.conf
+# to be used in a cron job
+
+# truncate log instead of removing it and making a new file
+copytruncate
+
+/usr/share/tomcat7/logs/request-error.log {
+  nocompress
+  rotate 8
+}

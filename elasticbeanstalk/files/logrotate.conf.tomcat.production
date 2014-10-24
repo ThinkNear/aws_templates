@@ -1,0 +1,190 @@
+# usage: logrotate -f ./logrotate.conf
+# to be used in a cron job
+
+# rotate log files daily (override with -f option)
+daily
+
+# don't keep any backlogs
+rotate 0
+
+# truncate log instead of removing it and making a new file
+copytruncate
+
+
+/usr/share/tomcat7/logs/bids.log {
+  # compress using gzip (default)
+  compress
+  # -6 balancing speed vs compression (-9 max compression/slowest, -1 min compression/fastest)
+  compressoptions "-6"
+  compressext .gz
+  # after rotating and compressing...
+  lastaction
+
+    s3_source=/usr/share/tomcat7/logs/bids.log.*.gz
+
+    echo "Putting $s3_source to S3"
+    host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
+    tn_s3_uploader $host_unique_id "$s3_source" REMOVED/production/bids/2013-07 y=%Y/m=%m/d=%d/h=%H
+  endscript
+}
+
+/usr/share/tomcat7/logs/events.log {
+  # compress using gzip (default)
+  compress
+  # -6 balancing speed vs compression (-9 max compression/slowest, -1 min compression/fastest)
+  compressoptions "-6"
+  compressext .gz
+  # after rotating and compressing...
+  lastaction
+
+      s3_source=/usr/share/tomcat7/logs/events.log.*.gz
+
+      echo "Putting $s3_source to S3"
+      host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
+      tn_s3_uploader $host_unique_id "$s3_source" REMOVED/production/events_raw/2013-07 y=%Y/m=%m/d=%d/h=%H
+
+  endscript
+}
+
+/usr/share/tomcat7/logs/auctions.log {
+  # compress using gzip (default)
+  compress
+  # -6 balancing speed vs compression (-9 max compression/slowest, -1 min compression/fastest)
+  compressoptions "-6"
+  compressext .gz
+  # after rotating and compressing...
+  lastaction
+
+    s3_source=/usr/share/tomcat7/logs/auctions.log.*.gz
+
+    echo "Putting $s3_source to S3"
+    host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
+    tn_s3_uploader $host_unique_id "$s3_source" REMOVED/production/auctions/2013-07 y=%Y/m=%m/d=%d/h=%H/mm=00
+
+  endscript
+}
+
+/usr/share/tomcat7/logs/auctions-subset.log {
+  # compress using gzip (default)
+  compress
+  # -6 balancing speed vs compression (-9 max compression/slowest, -1 min compression/fastest)
+  compressoptions "-6"
+  compressext .gz
+  # after rotating and compressing...
+  lastaction
+
+    s3_source=/usr/share/tomcat7/logs/auctions-subset.log.*.gz
+
+    echo "Putting $s3_source to S3"
+    host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
+    tn_s3_uploader $host_unique_id "$s3_source" REMOVED/production/auctions_subset/2013-07 year=%Y/month=%m/day=%d/hour=%H
+
+  endscript
+}
+
+/usr/share/tomcat7/logs/auctions-nolocation.log {
+  # compress using gzip (default)
+  compress
+  # -6 balancing speed vs compression (-9 max compression/slowest, -1 min compression/fastest)
+  compressoptions "-6"
+  compressext .gz
+  # after rotating and compressing...
+  lastaction
+
+    s3_source=/usr/share/tomcat7/logs/auctions-nolocation.log.*.gz
+
+    echo "Putting $s3_source to S3"
+    host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
+    tn_s3_uploader $host_unique_id "$s3_source" REMOVED/production/auctions_nolocation/2013-07 y=%Y/m=%m/d=%d/h=%H/mm=00
+
+  endscript
+}
+
+/usr/share/tomcat7/logs/invalid-events.log {
+  # compress using gzip (default)
+  compress
+  # -6 balancing speed vs compression (-9 max compression/slowest, -1 min compression/fastest)
+  compressoptions "-6"
+  compressext .gz
+  # after rotating and compressing...
+  lastaction
+
+    s3_source=/usr/share/tomcat7/logs/invalid-events.log.*.gz
+
+    echo "Putting $s3_source to S3"
+    host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
+    tn_s3_uploader $host_unique_id "$s3_source" REMOVED/production/invalid_events/2013-07 y=%Y/m=%m/d=%d/h=%H
+
+  endscript
+}
+
+/usr/share/tomcat7/logs/external-events.log {
+  # compress using gzip (default)
+  compress
+  # -6 balancing speed vs compression (-9 max compression/slowest, -1 min compression/fastest)
+  compressoptions "-6"
+  compressext .gz
+  # after rotating and compressing...
+  lastaction
+
+    s3_source=/usr/share/tomcat7/logs/external-events.log.*.gz
+
+    echo "Putting $s3_source to S3"
+    host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
+    tn_s3_uploader $host_unique_id "$s3_source" REMOVED/production/external_events/2013-07 y=%Y/m=%m/d=%d/h=%H
+
+  endscript
+}
+
+/usr/share/tomcat7/logs/invalid-external-events.log {
+  # compress using gzip (default)
+  compress
+  # -6 balancing speed vs compression (-9 max compression/slowest, -1 min compression/fastest)
+  compressoptions "-6"
+  compressext .gz
+  # after rotating and compressing...
+  lastaction
+
+    s3_source=/usr/share/tomcat7/logs/invalid-external-events.log.*.gz
+
+    echo "Putting $s3_source to S3"
+    host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
+    tn_s3_uploader $host_unique_id "$s3_source" REMOVED/production/invalid_external_events/2013-07 y=%Y/m=%m/d=%d/h=%H
+
+  endscript
+}
+
+# Server events go to app-status
+/usr/share/tomcat7/logs/app.log {
+  compress
+  compresscmd /bin/lzop
+  compressoptions "-U"
+  compressext .lzo
+  # after rotating and compressing...
+  lastaction
+
+    s3_source=/usr/share/tomcat7/logs/app.log.*.lzo
+
+    echo "Putting $s3_source to S3"
+    host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
+    tn_s3_uploader $host_unique_id "$s3_source" REMOVED/production year=%Y/month=%m/day=%d/hour=%H
+
+  endscript
+}
+
+# Comprehensive log of requests don't get uploaded
+/usr/share/tomcat7/logs/request-temporary.log {
+  nocompress
+}
+
+# Trash localhost_access_log
+/usr/share/tomcat7/logs/localhost_access_log.*.txt {
+  nocompress
+}
+
+# Keep catalina.out unless it gets too big - could be used for debugging startup
+/usr/share/tomcat7/logs/catalina.out {
+  nocompress
+  missingok
+  size 1M
+}

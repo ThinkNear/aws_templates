@@ -1,0 +1,23 @@
+{
+  "notifier":{
+    "name":"Thinknear Venice Notifier",
+    "url":"environment-ENVIRONMENT.elasticbeanstalk.com",
+    "version":"1.3.0"
+  },
+  "error":{
+    "class":"LogRotateError",
+    "message":"MESSAGE",
+    "backtrace":[
+      {
+        "number":"1",
+        "file":"/scripts/ami/logrotate.conf.tomcat",
+        "method":"logrotate"
+      }
+    ]
+  },
+  "request":{},
+  "server":{
+    "environment_name":"ENVIRONMENT",
+    "hostname":"HOSTNAME"
+  }
+}

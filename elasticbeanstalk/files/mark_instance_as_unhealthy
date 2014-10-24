@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Immediately marks this instance as unhealthy.
+instance_id=`GET http://169.254.169.254/latest/meta-data/instance-id`
+echo "Marking instance $instance_id as unhealthy"
+aws autoscaling set-instance-health --region us-east-1 --instance-id $instance_id --health-status Unhealthy

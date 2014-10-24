@@ -1,0 +1,28 @@
+#!/bin/sh
+# This file is located in
+# /etc/rc0.d/ for rotation upon shutdown
+# /etc/rc6.d/ for rotation upon restart
+
+echo `date` >> /home/ec2-user/rotate.log
+echo "$0 $@" >> /home/ec2-user/rotate.log
+
+# Description: Ensure logrotate for tomcat calls upon restart/shutdown
+# See how we were called.
+case "$1" in
+  start)
+    touch /var/lock/subsys/logrotate-tomcat
+    ;;
+  stop)
+    test -x /usr/sbin/logrotate || exit 0
+    /usr/sbin/logrotate -f /etc/logrotate.conf.tomcat &>> /home/ec2-user/rotate.log
+    rm -f /var/lock/subsys/logrotate-tomcat
+    ;;
+  restart)
+    test -x /usr/sbin/logrotate || exit 0
+    /usr/sbin/logrotate -f /etc/logrotate.conf.tomcat &>> /home/ec2-user/rotate.log
+    touch /var/lock/subsys/logrotate-tomcat
+    ;;
+  *)
+    echo "Usage: logrotate-tomcat {start|stop|restart}"
+    exit 1
+esac

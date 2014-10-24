@@ -1,0 +1,7 @@
+#!/bin/sh
+# This file is located in
+# /etc/cron.d/ for periodic rotation
+
+test -x /usr/sbin/logrotate || exit 0
+echo `date` >> /home/ec2-user/rotate.log
+/usr/sbin/logrotate -f /etc/logrotate.conf.local &>> /home/ec2-user/rotate.log
