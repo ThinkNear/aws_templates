@@ -29,12 +29,12 @@ if [ -f $COLLECTD_CONF ]; then
   sed -i "/Hostname /c Hostname \"$SOURCENAME\"" $COLLECTD_CONF
 
   # By default, collectd does not report to Librato. Enable it.
-  if [ "$STAGE" = "production" ] || [ "$ELASTICBEANSTALK_ENVIRONMENT" = "environment-test-load" ]; then
+  if [ "$STAGE" = "production" ] || [ "$ELASTICBEANSTALK_ENVIRONMENT" = "load" ]; then
     enable_collectd
   fi
 
   # Send detailed metrics for load testing
-  if [ "$ELASTICBEANSTALK_ENVIRONMENT" = "environment-test-load" ]; then
+  if [ "$ELASTICBEANSTALK_ENVIRONMENT" = "load" ]; then
     detailed_collectd
   fi
 fi

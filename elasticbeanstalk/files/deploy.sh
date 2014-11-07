@@ -61,6 +61,12 @@ echo 2 | alternatives --config java
 
 rm -f $ec2_dir/*.gz
 
+echo "Monitor for low disk space."
+echo "2,17,32,47 * * * * root $ec2_dir/aws-scripts-mon/mon-put-instance-data.pl --disk-space-avail --disk-path=/ --aws-iam-role=aws-elasticbeanstalk-ec2-role" >> /etc/crontab
+instance_id=`curl --silent http://169.254.169.254/latest/meta-data/instance-id`
+
+aws cloudwatch put-metric-alarm --region us-east-1 --alarm-name LowDiskSpace_$instance_id --comparison-operator LessThanThreshold --evaluation-periods 2 --metric-name DiskSpaceAvailable --namespace 
+
 echo "*/5 * * * * root /etc/cron.d/logrotate-tomcat" >> /etc/crontab
 
 echo "Setting up logrotate-tomcat-rc..."

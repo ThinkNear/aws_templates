@@ -24,7 +24,7 @@ copytruncate
 
     echo "Putting $s3_source to S3"
     host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
-    tn_s3_uploader $host_unique_id "$s3_source" REMOVED/production/bids/2013-07 y=%Y/m=%m/d=%d/h=%H
+    tn_s3_uploader $host_unique_id "$s3_source" S3_LOG_BUCKET/production/bids/2013-07 y=%Y/m=%m/d=%d/h=%H
   endscript
 }
 
@@ -41,7 +41,7 @@ copytruncate
 
       echo "Putting $s3_source to S3"
       host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
-      tn_s3_uploader $host_unique_id "$s3_source" REMOVED/production/events_raw/2013-07 y=%Y/m=%m/d=%d/h=%H
+      tn_s3_uploader $host_unique_id "$s3_source" S3_LOG_BUCKET/production/events_raw/2013-07 y=%Y/m=%m/d=%d/h=%H
 
   endscript
 }
@@ -59,7 +59,7 @@ copytruncate
 
     echo "Putting $s3_source to S3"
     host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
-    tn_s3_uploader $host_unique_id "$s3_source" REMOVED/production/auctions/2013-07 y=%Y/m=%m/d=%d/h=%H/mm=00
+    tn_s3_uploader $host_unique_id "$s3_source" S3_LOG_BUCKET/production/auctions/2013-07 y=%Y/m=%m/d=%d/h=%H/mm=00
 
   endscript
 }
@@ -77,7 +77,7 @@ copytruncate
 
     echo "Putting $s3_source to S3"
     host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
-    tn_s3_uploader $host_unique_id "$s3_source" REMOVED/production/auctions_subset/2013-07 year=%Y/month=%m/day=%d/hour=%H
+    tn_s3_uploader $host_unique_id "$s3_source" S3_LOG_BUCKET/production/auctions_subset/2013-07 year=%Y/month=%m/day=%d/hour=%H
 
   endscript
 }
@@ -95,7 +95,7 @@ copytruncate
 
     echo "Putting $s3_source to S3"
     host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
-    tn_s3_uploader $host_unique_id "$s3_source" REMOVED/production/auctions_nolocation/2013-07 y=%Y/m=%m/d=%d/h=%H/mm=00
+    tn_s3_uploader $host_unique_id "$s3_source" S3_LOG_BUCKET/production/auctions_nolocation/2013-07 y=%Y/m=%m/d=%d/h=%H/mm=00
 
   endscript
 }
@@ -113,7 +113,7 @@ copytruncate
 
     echo "Putting $s3_source to S3"
     host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
-    tn_s3_uploader $host_unique_id "$s3_source" REMOVED/production/invalid_events/2013-07 y=%Y/m=%m/d=%d/h=%H
+    tn_s3_uploader $host_unique_id "$s3_source" S3_LOG_BUCKET/production/invalid_events/2013-07 y=%Y/m=%m/d=%d/h=%H
 
   endscript
 }
@@ -131,7 +131,7 @@ copytruncate
 
     echo "Putting $s3_source to S3"
     host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
-    tn_s3_uploader $host_unique_id "$s3_source" REMOVED/production/external_events/2013-07 y=%Y/m=%m/d=%d/h=%H
+    tn_s3_uploader $host_unique_id "$s3_source" S3_LOG_BUCKET/production/external_events/2013-07 y=%Y/m=%m/d=%d/h=%H
 
   endscript
 }
@@ -149,7 +149,7 @@ copytruncate
 
     echo "Putting $s3_source to S3"
     host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
-    tn_s3_uploader $host_unique_id "$s3_source" REMOVED/production/invalid_external_events/2013-07 y=%Y/m=%m/d=%d/h=%H
+    tn_s3_uploader $host_unique_id "$s3_source" S3_LOG_BUCKET/production/invalid_external_events/2013-07 y=%Y/m=%m/d=%d/h=%H
 
   endscript
 }
@@ -167,7 +167,7 @@ copytruncate
 
     echo "Putting $s3_source to S3"
     host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
-    tn_s3_uploader $host_unique_id "$s3_source" REMOVED/production year=%Y/month=%m/day=%d/hour=%H
+    tn_s3_uploader $host_unique_id "$s3_source" S3_LOG_BUCKET/production year=%Y/month=%m/day=%d/hour=%H
 
   endscript
 }
