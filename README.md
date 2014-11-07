@@ -37,6 +37,11 @@ The list below describes features of the configuration with relevant files.
   * ```httpd.conf```
   * ```server.xml```
 
+### tn_s3_file_uploader
+
+We use the Ruby gem [tn_s3_file_uploader](https://rubygems.org/gems/tn_s3_file_uploader) to copy files from the EC2 instance to S3. 
+You can fork the github project [here](https://github.com/ThinkNear/tn_s3_file_uploader) and find usage documentation [here](https://github.com/ThinkNear/tn_s3_file_uploader/wiki).
+
 ## Getting Started
 
 ### Requirements
