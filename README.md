@@ -1,7 +1,41 @@
 aws_templates
 =============
 
-This repo contains template configuration files that we use to configure our AWS services.
+This repo contains template configuration files that we use to configure our AWS Elastic Beanstalk environment.
+
+## Overview
+
+The list below describes features of the configuration with relevant files.
+
+* Raid0
+  * ```deploy.sh```
+* Low diskspace monitor
+  * ```deploy.sh```
+* cron triggered log-rotation to AWS S3
+  * ```environment.config```
+  * ```deploy.sh```
+  * ```check_cron.sh```
+  * ```logrotate-local```
+  * ```logrotate-tomcat-rc```
+  * ```logrotate.conf.elasticbeanstalk.httpd```
+  * ```logrotate.conf.local```
+  * ```logrotate.conf.tomcat.production```
+* AWS ELB configuration
+  * ```environment.config```
+* System settings
+  * ```limits.conf```
+  * ```sysctl.conf```
+* JMX remote monitoring 
+  * ```environment.config```
+  * ```catalina-jmx-remote.jar```
+* collectd monitoring
+  * ```environment.config```
+  * ```collectd.conf```
+  * ```config_collectd.sh```
+  * ```collectd-librato.zip```
+* bypassing the default front-facing Apache web server and using Tomcat directly
+  * ```httpd.conf```
+  * ```server.xml```
 
 ## Getting Started
 
