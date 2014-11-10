@@ -20,11 +20,11 @@ copytruncate
   # after rotating and compressing...
   lastaction
 
-    s3_source=/usr/share/tomcat7/logs/bids.log.*.gz
+    s3_source="/usr/share/tomcat7/logs/bids.log.*.gz"
 
     echo "Putting $s3_source to S3"
     host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
-    tn_s3_uploader $host_unique_id "$s3_source" S3_LOG_BUCKET/production/bids/2013-07 y=%Y/m=%m/d=%d/h=%H
+    tn_s3_file_uploader --input-file-pattern="$s3_source" --s3-output-pattern="S3_LOG_BUCKET/production/bids/y=%Y/m=%m/d=%d/h=%H/$host_unique_id.ip-%{ip-address}.%{file-name}.%{file-extension}"
   endscript
 }
 
@@ -37,11 +37,11 @@ copytruncate
   # after rotating and compressing...
   lastaction
 
-      s3_source=/usr/share/tomcat7/logs/events.log.*.gz
+      s3_source="/usr/share/tomcat7/logs/events.log.*.gz"
 
       echo "Putting $s3_source to S3"
       host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
-      tn_s3_uploader $host_unique_id "$s3_source" S3_LOG_BUCKET/production/events_raw/2013-07 y=%Y/m=%m/d=%d/h=%H
+      tn_s3_file_uploader --input-file-pattern="$s3_source" --s3-output-pattern="S3_LOG_BUCKET/production/events_raw/y=%Y/m=%m/d=%d/h=%H/$host_unique_id.ip-%{ip-address}.%{file-name}.%{file-extension}"
 
   endscript
 }
@@ -55,11 +55,11 @@ copytruncate
   # after rotating and compressing...
   lastaction
 
-    s3_source=/usr/share/tomcat7/logs/auctions.log.*.gz
+    s3_source="/usr/share/tomcat7/logs/auctions.log.*.gz"
 
     echo "Putting $s3_source to S3"
     host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
-    tn_s3_uploader $host_unique_id "$s3_source" S3_LOG_BUCKET/production/auctions/2013-07 y=%Y/m=%m/d=%d/h=%H/mm=00
+    tn_s3_file_uploader --input-file-pattern="$s3_source" --s3-output-pattern="S3_LOG_BUCKET/production/auctions/y=%Y/m=%m/d=%d/h=%H/mm=00/$host_unique_id.ip-%{ip-address}.%{file-name}.%{file-extension}"
 
   endscript
 }
@@ -73,11 +73,11 @@ copytruncate
   # after rotating and compressing...
   lastaction
 
-    s3_source=/usr/share/tomcat7/logs/auctions-subset.log.*.gz
+    s3_source="/usr/share/tomcat7/logs/auctions-subset.log.*.gz"
 
     echo "Putting $s3_source to S3"
     host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
-    tn_s3_uploader $host_unique_id "$s3_source" S3_LOG_BUCKET/production/auctions_subset/2013-07 year=%Y/month=%m/day=%d/hour=%H
+    tn_s3_file_uploader --input-file-pattern="$s3_source" --s3-output-pattern="S3_LOG_BUCKET/production/auctions_subset/year=%Y/month=%m/day=%d/hour=%H/$host_unique_id.ip-%{ip-address}.%{file-name}.%{file-extension}"
 
   endscript
 }
@@ -91,11 +91,11 @@ copytruncate
   # after rotating and compressing...
   lastaction
 
-    s3_source=/usr/share/tomcat7/logs/auctions-nolocation.log.*.gz
+    s3_source="/usr/share/tomcat7/logs/auctions-nolocation.log.*.gz"
 
     echo "Putting $s3_source to S3"
     host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
-    tn_s3_uploader $host_unique_id "$s3_source" S3_LOG_BUCKET/production/auctions_nolocation/2013-07 y=%Y/m=%m/d=%d/h=%H/mm=00
+    tn_s3_file_uploader --input-file-pattern="$s3_source" --s3-output-pattern="S3_LOG_BUCKET/production/auctions_nolocation/y=%Y/m=%m/d=%d/h=%H/mm=00/$host_unique_id.ip-%{ip-address}.%{file-name}.%{file-extension}"
 
   endscript
 }
@@ -109,11 +109,11 @@ copytruncate
   # after rotating and compressing...
   lastaction
 
-    s3_source=/usr/share/tomcat7/logs/invalid-events.log.*.gz
+    s3_source="/usr/share/tomcat7/logs/invalid-events.log.*.gz"
 
     echo "Putting $s3_source to S3"
     host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
-    tn_s3_uploader $host_unique_id "$s3_source" S3_LOG_BUCKET/production/invalid_events/2013-07 y=%Y/m=%m/d=%d/h=%H
+    tn_s3_file_uploader --input-file-pattern="$s3_source" --s3-output-pattern="S3_LOG_BUCKET/production/invalid_events/y=%Y/m=%m/d=%d/h=%H/$host_unique_id.ip-%{ip-address}.%{file-name}.%{file-extension}"
 
   endscript
 }
@@ -127,11 +127,11 @@ copytruncate
   # after rotating and compressing...
   lastaction
 
-    s3_source=/usr/share/tomcat7/logs/external-events.log.*.gz
+    s3_source="/usr/share/tomcat7/logs/external-events.log.*.gz"
 
     echo "Putting $s3_source to S3"
     host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
-    tn_s3_uploader $host_unique_id "$s3_source" S3_LOG_BUCKET/production/external_events/2013-07 y=%Y/m=%m/d=%d/h=%H
+    tn_s3_file_uploader --input-file-pattern="$s3_source" --s3-output-pattern="S3_LOG_BUCKET/production/external_events/y=%Y/m=%m/d=%d/h=%H/$host_unique_id.ip-%{ip-address}.%{file-name}.%{file-extension}"
 
   endscript
 }
@@ -145,11 +145,11 @@ copytruncate
   # after rotating and compressing...
   lastaction
 
-    s3_source=/usr/share/tomcat7/logs/invalid-external-events.log.*.gz
+    s3_source="/usr/share/tomcat7/logs/invalid-external-events.log.*.gz"
 
     echo "Putting $s3_source to S3"
     host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
-    tn_s3_uploader $host_unique_id "$s3_source" S3_LOG_BUCKET/production/invalid_external_events/2013-07 y=%Y/m=%m/d=%d/h=%H
+    tn_s3_file_uploader --input-file-pattern="$s3_source" --s3-output-pattern="S3_LOG_BUCKET/production/invalid_external_events/y=%Y/m=%m/d=%d/h=%H/$host_unique_id.ip-%{ip-address}.%{file-name}.%{file-extension}"
 
   endscript
 }
@@ -163,11 +163,11 @@ copytruncate
   # after rotating and compressing...
   lastaction
 
-    s3_source=/usr/share/tomcat7/logs/app.log.*.lzo
+    s3_source="/usr/share/tomcat7/logs/app.log.*.lzo"
 
     echo "Putting $s3_source to S3"
     host_unique_id=`cat /home/ec2-user/tn-unique-identifier.dat`
-    tn_s3_uploader $host_unique_id "$s3_source" S3_LOG_BUCKET/production year=%Y/month=%m/day=%d/hour=%H
+    tn_s3_file_uploader --input-file-pattern="$s3_source" --s3-output-pattern="S3_LOG_BUCKET/production/year=%Y/month=%m/day=%d/hour=%H/$host_unique_id.ip-%{ip-address}.%{file-name}.%{file-extension}"
 
   endscript
 }
